@@ -6,13 +6,13 @@
 // Stack
 typedef struct s_list
 {
-	int				value;
+	int				data;
 	int				index;
 	struct s_list	*next;
 }				t_list;
 
 // Util functions
-t_list	*ft_lstnew(int value);
+t_list	*ft_lstnew(int data);
 t_list	*ft_lstlast(t_list *head);
 void	ft_lstadd_front(t_list **stack, t_list *new);
 void	ft_lstadd_back(t_list **stack, t_list *new);

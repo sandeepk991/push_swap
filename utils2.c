@@ -7,7 +7,7 @@ int	is_stack_sorted(t_list **stack)
 	head = *stack;
 	while (head && head->next)
 	{
-		if (head->value > head->next->value)
+		if (head->data > head->next->data)
 			return (0);
 		head = head->next;
 	}

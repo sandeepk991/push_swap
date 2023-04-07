@@ -1,14 +1,14 @@
 #include "push_swap.h"
 
 // Creates new node and returns the pointer of it
-t_list	*ft_lstnew(int value)
+t_list	*ft_lstnew(int data)
 {
 	t_list	*new;
 
 	new = (t_list *) malloc(sizeof(*new));
 	if (!new)
 		return (NULL);
-	new->value = value;
+	new->data = data;
 	new->index = -1;
 	new->next = NULL;
 	return (new);

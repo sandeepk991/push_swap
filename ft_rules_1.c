@@ -15,11 +15,11 @@ int	swap(t_list **stack)
 	next = head->next;
 	if (!head && !next)
 		ft_error("Error occured while swapping!");
-	tmp_val = head->value;
+	tmp_val = head->data;
 	tmp_index = head->index;
-	head->value = next->value;
+	head->data = next->data;
 	head->index = next->index;
-	next->value = tmp_val;
+	next->data = tmp_val;
 	next->index = tmp_index;
 	return (0);
 }
