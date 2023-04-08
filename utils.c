@@ -31,27 +31,6 @@ int	get_distance(t_list **stack, int index)
 	return (distance);
 }
 
-void	make_top(t_list **stack, int distance)
-{
-	t_list	*head;
-	int		tmp;
-
-	if (distance == 0)
-		return ;
-	head = *stack;
-	tmp = ft_lstsize(head) - distance;
-	if (distance <= (ft_lstsize(head) / 2))
-	{
-		while (distance-- > 0)
-			ra(stack);
-	}
-	else
-	{
-		while (tmp-- > 0)
-			rra(stack);
-	}
-}
-
 void	free_stack(t_list **stack)
 {
 	t_list	*head;
@@ -65,4 +44,21 @@ void	free_stack(t_list **stack)
 		free(tmp);
 	}
 	free(stack);
+}
+
+void	ft_error(char *msg)
+{
+	ft_putendl_fd(msg, 1);
+	exit(0);
+}
+
+void	ft_free(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	while (i >= 0)
+		free(str[i--]);
 }
