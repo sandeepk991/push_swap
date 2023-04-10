@@ -1,11 +1,11 @@
 #include "push_swap.h"
 
-static int	get_min(t_list **stack, int val)
+static int	get_min(t_list **stack_a, int val)
 {
 	t_list	*head;
 	int		min;
 
-	head = *stack;
+	head = *stack_a;
 	min = head->index;
 	while (head->next)
 	{
@@ -27,29 +27,7 @@ static void	sort_3_args(t_list **stack_a)
 	next_min = get_min(stack_a, min);
 	if (is_stack_sorted(stack_a))
 		return ;
-	if (head->index == min && head->next->index != next_min)
-	{
-		ra(stack_a);
-		sa(stack_a);
-		rra(stack_a);
-	}
-	else if (head->index == next_min)
-	{
-		if (head->next->index == min)
-			sa(stack_a);
-		else
-			rra(stack_a);
-	}
-	else
-	{
-		if (head->next->index == min)
-			ra(stack_a);
-		else
-		{
-			sa(stack_a);
-			rra(stack_a);
-		}
-	}
+	sort_3(stack_a, head, min, next_min);
 }
 
 static void	sort_4_args(t_list **stack_a, t_list **stack_b)
@@ -118,4 +96,3 @@ void	simple_sort(t_list **stack_a, t_list **stack_b)
 	else if (size == 5)
 		sort_5_args(stack_a, stack_b);
 }
-

@@ -30,6 +30,7 @@ void	ft_free(char **str);
 void	radix_sort(t_list **stack_a, t_list **stack_b);
 void	simple_sort(t_list **stack_a, t_list **stack_b);
 void	index_stack(t_list **stack);
+void	sort_3(t_list **stack_a, t_list *head, int min, int next_min);
 void	sort_5_args(t_list **stack_a, t_list **stack_b);
 
 // Rules functions
