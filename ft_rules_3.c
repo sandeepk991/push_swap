@@ -2,43 +2,44 @@
 
 // Shift up all elements of a stack by 1. The first element becomes the last one | ra and rb
 
-int	rotate(t_list **stack)
+int	ft_rotate(t_list **stack_a)
 {
-	t_list	*head;
-	t_list	*tail;
+	t_list	*tmp;
 
-	if (ft_lstsize(*stack) < 2)
+	if (!*stack_a || (*stack_a)->next == 0)
 		return (-1);
-	head = *stack;
-	tail = ft_lstlast(head);
-	*stack = head->next;
-	head->next = NULL;
-	tail->next = head;
+	tmp = *stack_a;
+	*stack_a = ft_lstlast(*stack_a);
+	(*stack_a)->next = tmp;
+	*stack_a = tmp->next;
+	tmp->next = NULL;
 	return (0);
 }
 
-int	ra(t_list **stack_a)
+int	ft_ra(t_list **stack_a)
 {
-	if (rotate(stack_a) == -1)
+	if (ft_rotate(stack_a) == -1)
 		return (-1);
-	ft_putendl_fd("ra", 1);
+	else
+		write(1, "ra\n", 3);
 	return (0);
 }
 
-int	rb(t_list **stack_b)
+int	ft_rb(t_list **stack_b)
 {
-	if (rotate(stack_b) == -1)
+	if (ft_rotate(stack_b) == -1)
 		return (-1);
-	ft_putendl_fd("rb", 1);
+	else
+		write(1, "rb\n", 3);
 	return (0);
 }
 
-int	rr(t_list **stack_a, t_list **stack_b)
+int	ft_rr(t_list **stack_a, t_list **stack_b)
 {
 	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
 		return (-1);
-	rotate(stack_a);
-	rotate(stack_b);
-	ft_putendl_fd("rr", 1);
+	ft_rotate(stack_a);
+	ft_rotate(stack_b);
+	write(1, "rr\n", 3);
 	return (0);
 }

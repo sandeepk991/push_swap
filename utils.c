@@ -23,7 +23,7 @@ int	get_distance(t_list **stack, int index)
 	head = *stack;
 	while (head)
 	{
-		if (head->index == index)
+		if (head->index_value == index)
 			break ;
 		distance++;
 		head = head->next;

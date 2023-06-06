@@ -2,52 +2,55 @@
 
 // Shifts down all elements of a stack by 1. The last element becomes the first one | rra and rrb
 
-int	reverseRotate(t_list **stack)
+int	ft_reverseRotate(t_list **stack_a)
 {
-	t_list	*head;
-	t_list	*tail;
+	t_list	*tmp;
+	int i;
 
-	if (ft_lstsize(*stack) < 2)
+	if (*stack_a == 0 || (*stack_a)->next == 0)
 		return (-1);
-	head = *stack;
-	tail = ft_lstlast(head);
-	while (head)
+	tmp = *stack_a;
+	i = 0;
+	while ((*stack_a)->next)
 	{
-		if (head->next->next == NULL)
-		{
-			 head->next = NULL;
-			 break ;
-		}
-		head = head->next;
+		*stack_a = (*stack_a)->next;
+		i++;
 	}
-	tail->next = *stack;
-	*stack = tail;
+	(*stack_a)->next = tmp;
+	while (i > 1)
+	{
+		tmp = tmp->next;
+		i--;
+	}
+	tmp->next = NULL;
 	return (0);
 }
 
-int	rra(t_list **stack_a)
+int	ft_rra(t_list **stack_a)
 {
-	if (reverseRotate(stack_a) == -1)
+	if (ft_reverseRotate(stack_a) == -1)
 		return (-1);
-	ft_putendl_fd("rra", 1);
+	else
+		write(1, "rra\n", 4);
 	return (0);
 }
 
-int	rrb(t_list **stack_b)
+int	ft_rrb(t_list **stack_b)
 {
-	if (reverseRotate(stack_b) == -1)
+	if (ft_reverseRotate(stack_b) == -1)
 		return (-1);
-	ft_putendl_fd("rrb", 1);
+	else
+		write(1, "rrb\n", 4);
 	return (0);
 }
 
-int	rrr(t_list **stack_a, t_list **stack_b)
+int	ft_rrr(t_list **stack_a, t_list **stack_b)
 {
 	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
 		return (-1);
-	reverseRotate(stack_a);
-	reverseRotate(stack_b);
-	ft_putendl_fd("rrr", 1);
+	ft_reverseRotate(stack_a);
+	ft_reverseRotate(stack_b);
+	write(1, "rrr\n", 4);
 	return (0);
 }
 

@@ -2,51 +2,43 @@
 
 // Swaps first two elements of a stack | sa and sb
 
-int	swap(t_list **stack)
+int ft_swap(t_list **stack_a)
 {
-	t_list	*head;
-	t_list	*next;
-	int		tmp_val;
-	int		tmp_index;
-
-	if (ft_lstsize(*stack) < 2)
+	t_list *tmp;
+	if (*stack_a == NULL || (*stack_a)->next)
 		return (-1);
-	head = *stack;
-	next = head->next;
-	if (!head && !next)
-		ft_error("Error occured while swapping!");
-	tmp_val = head->data;
-	tmp_index = head->index;
-	head->data = next->data;
-	head->index = next->index;
-	next->data = tmp_val;
-	next->index = tmp_index;
+	tmp = *stack_a;
+	*stack_a = (*stack_a)->next;
+	tmp->next = (*stack_a)->next;
+	(*stack_a)->next = tmp;
 	return (0);
 }
 
-int	sa(t_list **stack_a)
+int	ft_sa(t_list **stack_a)
 {
-	if (swap(stack_a) == -1)
+	if (ft_swap(stack_a) == -1)
 		return (-1);
-	ft_putendl_fd("sa", 1);
+	else
+		write(1, "sa\n", 3);
 	return (0);
 }
 
-int	sb(t_list **stack_b)
+int	ft_sb(t_list **stack_b)
 {
-	if (swap(stack_b) == -1)
+	if (ft_swap(stack_b) == -1)
 		return (-1);
-	ft_putendl_fd("sb", 1);
+	else
+		write(1, "sb\n", 3);
 	return (0);
 }
 
-int	ss(t_list **stack_a, t_list **stack_b)
+int	ft_ss(t_list **stack_a, t_list **stack_b)
 {	
 	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
 		return (-1);
-	swap(stack_a);
-	swap(stack_b);
-	ft_putendl_fd("ss", 1);
+	ft_swap(stack_a);
+	ft_swap(stack_b);
+	write(1, "ss\n", 3);
 	return (0);
 }
 
