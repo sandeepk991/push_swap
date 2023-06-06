@@ -18,8 +18,7 @@ int	ft_sa(t_list **stack_a)
 {
 	if (ft_swap(stack_a) == -1)
 		return (-1);
-	else
-		write(1, "sa\n", 3);
+	write(1, "sa\n", 3);
 	return (0);
 }
 
@@ -27,8 +26,7 @@ int	ft_sb(t_list **stack_b)
 {
 	if (ft_swap(stack_b) == -1)
 		return (-1);
-	else
-		write(1, "sb\n", 3);
+	write(1, "sb\n", 3);
 	return (0);
 }
 

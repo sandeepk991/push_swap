@@ -22,7 +22,9 @@ void	check_args(int argc, char **argv)
 		tmp = ft_atoi(args[i]);
 		if (tmp < -2147483648 || tmp > 2147483647)
 			ft_error("Error");
-		else if (!ft_nonnum(args[i]) || ft_duplicate(tmp, args, i))
+		else if (!ft_nonnum(args[i]))
+			ft_error("Error");
+		else if (ft_duplicate(tmp, args, i))
 			ft_error("Error");
 	}
 	if (argc == 2)
