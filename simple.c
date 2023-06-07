@@ -1,4 +1,8 @@
 #include "push_swap.h"
+#include<stdio.h>
+
+void	sort_3_args(t_list **stack_a);
+static void	sort_4_args(t_list **stack_a, t_list **stack_b);
 
 static int	get_min(t_list **stack_a, int val)
 {
@@ -16,7 +20,7 @@ static int	get_min(t_list **stack_a, int val)
 	return (min);
 }
 
-static void	sort_3_args(t_list **stack_a)
+/*static void	sort_3_args(t_list **stack_a)
 {
 	t_list	*head;
 	int		min;
@@ -28,8 +32,83 @@ static void	sort_3_args(t_list **stack_a)
 	if (is_stack_sorted(stack_a))
 		return ;
 	sort_3(stack_a, head, min, next_min);
+}*/
+
+ void	sort_3_args(t_list **stack_a)
+{
+	//t_list *head;
+	int	x;
+	int	y;
+	int	z;
+	
+	//head = NULL;
+	x = 0;
+	y = 0;
+	z = 0;
+	while (!(x < y && y < z && z > x))
+	{
+		//head = *stack_a;
+		x = (*stack_a)->data;
+		//head = head->next;
+		y = (*stack_a)->next->data;
+		//head =head->next;
+		z = (*stack_a)->next->next->data;
+		if (x < y && y > z && z < x)
+			ft_rra(stack_a);
+		else if (x > y && y < z && z < x)
+			ft_ra(stack_a);
+		else if (x > y && y > z && z < x)
+		{
+			ft_sa(stack_a);
+			ft_rra(stack_a);
+		}
+		else if ((x > y && y < z && z > x))
+		// || (x > y && y > z && z < x) || (x < y && y > z && z > x))
+			ft_sa(stack_a);
+	}
 }
 
+void	sort_upto_5_args(t_list **stack_a, t_list **stack_b)
+{
+	
+}
+/*void	sort_3to5_args(t_list **stack_a, t_list **stack_b)
+{
+	int	i;
+	
+	i = 0;
+	while
+	
+}
+
+void	sort_upto_5_args(t_list **stack_a, t_list **stack_b)
+{
+	int	i;
+	int	flag;
+	
+	flag = 0;
+	while(!is_stack_sorted(stack_a))
+	{
+		if(!flag)
+		{
+			sort_3to5_args(stack_a, stack_b);
+			flag = 1;
+		}
+	}
+}*/
+/*void	sort_325_args(t_list **stack_a, t_list **stack_b)
+{
+	
+}
+
+void	sort_upto_325_args(t_list **stack_a, t_list **stack_b)
+{
+	t_list *head;
+	
+	head = *stack_a;
+	if (ft_lstsize(*stack_a) == 5 && head->data > head->next->data)
+		
+}*/
 static void	sort_4_args(t_list **stack_a, t_list **stack_b)
 {
 	int	distance;
@@ -79,10 +158,13 @@ void	sort_5_args(t_list **stack_a, t_list **stack_b)
 	ft_pa(stack_a, stack_b);
 }
 
-void	sorting(t_list **stack_a, t_list **stack_b)
+/*void	sorting(t_list **stack_a, t_list **stack_b)
 {
 	int	size;
 	
+	if (is_stack_sorted(stack_a) || ft_lstsize(*stack_a) == 0
+		|| ft_lstsize(*stack_a) == 1)
+		return ;
 	size = ft_lstsize(*stack_a);
 	if (size == 2)
 		ft_sa(stack_a);
@@ -94,11 +176,21 @@ void	sorting(t_list **stack_a, t_list **stack_b)
 		sort_5_args(stack_a, stack_b);
 	else
 		radix_sort(stack_a, stack_b);
+}*/
+void	sort_2_args(t_list **stack_a)
+{
+	t_list *head;
+	
+	head = *stack_a;
+	if (head->data > head->next->data)
+		ft_sa(stack_a);
+	
 }
-/*void	simple_sort(t_list **stack_a, t_list **stack_b)
+
+void	sorting(t_list **stack_a, t_list **stack_b)
 {
 	int	size;
-
+	
 	if (is_stack_sorted(stack_a) || ft_lstsize(*stack_a) == 0
 		|| ft_lstsize(*stack_a) == 1)
 		return ;
@@ -111,4 +203,6 @@ void	sorting(t_list **stack_a, t_list **stack_b)
 		sort_4_args(stack_a, stack_b);
 	else if (size == 5)
 		sort_5_args(stack_a, stack_b);
-}*/
+	else
+		radix_sort(stack_a, stack_b);
+}

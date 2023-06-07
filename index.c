@@ -59,7 +59,7 @@ void	index_stack(t_list **stack)
 
 	i = 0;
 	stack_a = get_next_min(stack);
-	while (stack_a != NULL)
+	while (stack_a)
 	{
 		stack_a->index_value = i++;
 		stack_a = get_next_min(stack);
