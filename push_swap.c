@@ -1,7 +1,13 @@
 #include "push_swap.h"
 #include<stdio.h>
 
-
+void print_stack(t_list *stack) {
+    while (stack != NULL) {
+        printf("%d ", stack->data); // Assuming the data type is int
+        stack = stack->next;
+    }
+    printf("\n");
+}
 
 static void	init_Stack(t_list **stack, int argc, char **argv)
 {
@@ -57,6 +63,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	sorting(stack_a, stack_b);
+	print_stack(*stack_a);
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);

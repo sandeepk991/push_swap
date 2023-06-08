@@ -21,7 +21,7 @@ void	ft_lstadd_back(t_list **stack, t_list *new)
 // Returns the size of the Linked List
 int	ft_lstsize(t_list *head)
 {
-	size_t	i;
+	unsigned int	i;
 	t_list	*tmp;
 
 	tmp = head;
