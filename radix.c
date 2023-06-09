@@ -23,7 +23,6 @@ static int	get_max_bits(t_list **stack)
 
 void	radix_sort(t_list **stack_a, t_list **stack_b)
 {
-	printf("radix");
 	t_list	*stack;
 	int		i;
 	int		j;

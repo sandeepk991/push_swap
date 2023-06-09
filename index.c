@@ -1,7 +1,7 @@
 
 #include "push_swap.h"
 
-/*static t_list	*get_next_min(t_list **stack)
+static t_list	*get_next_min(t_list **stack)
 {
 	t_list	*stack_a;
 	t_list	*min;
@@ -10,25 +10,23 @@
 	min = NULL;
 	flag = 0;
 	stack_a = *stack;
-	if (stack_a != NULL)
+	while (stack_a != NULL)
 	{
-		while (stack_a != NULL)
+		if (stack_a->index_value == -1)
 		{
-			if (stack_a->index_value == -1)
+			if (!flag || stack_a->data < min->data)
 			{
-				if (!flag || stack_a->data < min->data)
-				{
-					min = stack_a;
-					flag = 1;
-				}
+				min = stack_a;
+				flag = 1;
 			}
-			stack_a = stack_a->next;
 		}
+		stack_a = stack_a->next;
 	}
+	
 	return (min);
-}*/
+}
 
-static t_list	*get_next_min(t_list **stack)
+/*static t_list	*get_next_min(t_list **stack)
 {
 	t_list	*head;
 	t_list	*min;
@@ -50,7 +48,7 @@ static t_list	*get_next_min(t_list **stack)
 		}
 	}
 	return (min);
-}
+}*/
 
 void	index_stack(t_list **stack)
 {

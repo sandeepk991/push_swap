@@ -29,8 +29,8 @@ void	radix_sort(t_list **stack_a, t_list **stack_b);
 void	index_stack(t_list **stack);
 void	sort_2_args(t_list **stack_a);
 void	sorting(t_list **stack_a, t_list **stack_b);
-//static void	sort_3_args(t_list **stack_a);
-//static void	sort_4_args(t_list **stack_a, t_list **stack_b);
+void	sort_3_args(t_list **stack_a);
+void	sort_4_args(t_list **stack_a, t_list **stack_b);
 void	sort_3(t_list **stack_a, t_list *head, int min, int next_min);
 void	sort_5_args(t_list **stack_a, t_list **stack_b);
 
