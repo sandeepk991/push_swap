@@ -1,6 +1,16 @@
 NAME = push_swap
 
-SRCS =  $(wildcard *.c)
+SRCS =  check_args.c ft_rules_1.c \
+	ft_rules_2.c \
+	ft_rules_3.c \
+	ft_rules_4.c \
+	index.c \
+	push_swap.c \
+	radix.c \
+	simple.c \
+	t_list1.c \
+	t_list2.c \
+	utils.c
 
 OBJS = ${SRCS:.c=.o}
 
