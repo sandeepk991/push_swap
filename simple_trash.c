@@ -173,7 +173,7 @@ void sort_4to5_args(t_list **stack_a, t_list **stack_b)
 
     while (i < size_a)
     {
-        if ((i>= 2  && (*stack_a)->index_value == 0) || (i == 3 || i == 4))
+        if (i>= 0  && (*stack_a)->index_value == 0)
         {
             ft_pb(stack_a, stack_b);
         }
@@ -198,7 +198,7 @@ void sort_upto_5_args(t_list **stack_a, t_list **stack_b)
     int i;
     int size_a;
     int flag;
-    int max_iterations = 5; // Set a maximum number of iterations
+    int max_iterations = 4; // Set a maximum number of iterations
     
     flag = 0;
     
@@ -206,11 +206,11 @@ void sort_upto_5_args(t_list **stack_a, t_list **stack_b)
     while (!is_stack_sorted(stack_a) && max_iterations > 0)
     {
         size_a = ft_lstsize(*stack_a);
-        printf("i am at the start of if stmt\n");
+        //printf("i am at the start of if stmt\n");
         if (!flag)
         {
             sort_4to5_args(stack_a, stack_b);
-            printf("i am in if stmt\n");
+            //printf("i am in if stmt\n");
             flag = 1;
             //print_stack(*stack_a);
         }
@@ -218,12 +218,12 @@ void sort_upto_5_args(t_list **stack_a, t_list **stack_b)
         {
             if (size_a == 5 && head[0] > head[1])
                 ft_sa(stack_a);
-            i = 3;
-            printf("size_a: %i\n", size_a);
-            while (i < size_a)
+            i = 0;
+            //printf("size_a: %i\n", size_a);
+            while (i < size_a -4)
             {
                 ft_ra(stack_a);
-                print_stack(*stack_a);
+                //print_stack(*stack_a);
                 i++;
             }
         }
