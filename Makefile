@@ -1,6 +1,6 @@
 NAME = push_swap
 
-SRCS =  check_args.c ft_rules_1.c \
+SRCS =  ft_rules_1.c \
 	ft_rules_2.c \
 	ft_rules_3.c \
 	ft_rules_4.c \
@@ -10,7 +10,7 @@ SRCS =  check_args.c ft_rules_1.c \
 	simple.c \
 	t_list1.c \
 	t_list2.c \
-	utils.c
+	utils1.c
 
 OBJS = ${SRCS:.c=.o}
 

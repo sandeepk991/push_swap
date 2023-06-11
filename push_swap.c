@@ -9,28 +9,21 @@ void print_stack(t_list *stack) {
     printf("\n");
 }
 
-static void	init_Stack(t_list **stack, int argc, char **argv)
+static void	fill_in_stack(t_list **stack, int argc, char **argv)
 {
 	t_list	*new;
-	char	**args;
-	int		i;
-
-	i = 0;
-	if (argc == 2)
-		args = ft_split(argv[1], ' ');
-	else
+	int	i;
+	
+	i = 1;
+	if (argc > 2)
 	{
-		i = 1;
-		args = argv;
+		while (argv[i])
+		{
+			new = ft_lstnew(ft_atoi(argv[i]));
+			ft_lstadd_back(stack, new);
+			i++;
+		}
 	}
-	while (args[i])
-	{
-		new = ft_lstnew(ft_atoi(args[i]));
-		ft_lstadd_back(stack, new);
-		i++;
-	}
-	if (argc == 2)
-		ft_free(args);
 }
 
 void	sorting(t_list **stack_a, t_list **stack_b)
@@ -63,8 +56,8 @@ static void	push_swap(int argc, char **argv)
 	stack_b = (t_list **)malloc(sizeof(t_list));
 	*stack_a = NULL;
 	*stack_b = NULL;
-	init_Stack(stack_a, argc, argv);
-	index_stack(stack_a);
+	fill_in_stack(stack_a, argc, argv);
+	ft_index_stack(stack_a);
 	if (is_stack_sorted(stack_a))
 	{
 		free_stack(stack_a);
@@ -82,7 +75,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (-1);
 	else
-		check_args(argc, argv);
+		ft_conditions(argc, argv);
 	//printf("h\n");
 	push_swap(argc, argv);
 	return (0);
