@@ -6,46 +6,107 @@
 /*   By: skaur <skaur@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 12:16:02 by skaur             #+#    #+#             */
-/*   Updated: 2023/04/09 12:16:22 by skaur            ###   ########.fr       */
+/*   Updated: 2023/06/17 13:08:07 by skaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
+
+int	ft_isnum(char *num);
+int	ft_duplicate(int num, char **argv, int i);
 
 static t_list	*get_next_min(t_list **stack)
 {
-	t_list	*head;
+	t_list	*stack_a;
 	t_list	*min;
-	int		is_min;
+	int		flag;
 
 	min = NULL;
-	is_min = 0;
-	head = *stack;
-	if (head)
+	flag = 0;
+	stack_a = *stack;
+	while (stack_a != NULL)
 	{
-		while (head)
+		if (stack_a->index_value == -1)
 		{
-			if ((head->index == -1) && (!is_min || head->data < min->data))
+			if (!flag || stack_a->data < min->data)
 			{
-				min = head;
-				is_min = 1;
+				min = stack_a;
+				flag = 1;
 			}
-			head = head->next;
 		}
-	}
+		stack_a = stack_a->next;
+	}	
 	return (min);
 }
 
-void	index_stack(t_list **stack)
+void	ft_index_stack(t_list **stack)
 {
-	t_list	*head;
-	int		index;
+	t_list	*stack_a;
+	int		i;
 
-	index = 0;
-	head = get_next_min(stack);
-	while (head)
+	i = 0;
+	stack_a = get_next_min(stack);
+	while (stack_a)
 	{
-		head->index = index++;
-		head = get_next_min(stack);
+		stack_a->index_value = i++;
+		stack_a = get_next_min(stack);
 	}
+}
+
+void	ft_conditions(int argc, char **argv)
+{
+	char	**args;
+	int		i;
+	long	tmp;
+
+	i = 0;
+	if (argc == 2)
+		args = ft_split(argv[i], ' ');
+	else
+	{
+		i = 1;
+		args = argv;
+	}
+	while (args[i])
+	{
+		tmp = ft_atoi(args[i]);
+		if (tmp < -2147483648 || tmp > 2147483647)
+			ft_error("Error");
+		else if (!ft_isnum(args[i]))
+			ft_error("Error");
+		else if (ft_duplicate(tmp, args, i))
+			ft_error("Error");
+		i++;
+	}
+	if (argc == 2)
+		ft_free(args);
+}
+
+int	ft_duplicate(int num, char **argv, int i)
+{
+	i++;
+	while (argv[i])
+	{
+		if (ft_atoi(argv[i]) == num)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	ft_isnum(char *num)
+{
+	int	i;
+
+	i = 0;
+	if (num[0] == '-')
+		i++;
+	while (num[i])
+	{
+		if (!ft_isdigit(num[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }

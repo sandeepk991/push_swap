@@ -6,43 +6,62 @@
 /*   By: skaur <skaur@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 12:20:54 by skaur             #+#    #+#             */
-/*   Updated: 2023/04/11 11:12:00 by skaur            ###   ########.fr       */
+/*   Updated: 2023/06/17 13:08:42 by skaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	get_min(t_list **stack_a, int val)
+void	sort_3_args(t_list **stack_a);
+void	sort_4_args(t_list **stack_a, t_list **stack_b);
+
+int	get_min(t_list **stack_a, int val)
 {
 	t_list	*head;
 	int		min;
 
 	head = *stack_a;
-	min = head->index;
+	min = head->index_value;
 	while (head->next)
 	{
 		head = head->next;
-		if ((head->index < min) && head->index != val)
-			min = head->index;
+		if ((head->index_value < min) && head->index_value != val)
+			min = head->index_value;
 	}
 	return (min);
 }
 
-static void	sort_3_args(t_list **stack_a)
+void	sort_2_args(t_list **stack_a)
 {
 	t_list	*head;
-	int		min;
-	int		next_min;
 
 	head = *stack_a;
-	min = get_min(stack_a, -1);
-	next_min = get_min(stack_a, min);
-	if (is_stack_sorted(stack_a))
-		return ;
-	sort_3(stack_a, head, min, next_min);
+	if (head->data > head->next->data)
+		ft_sa(stack_a);
 }
 
-static void	sort_4_args(t_list **stack_a, t_list **stack_b)
+void	sort_3_args(t_list **stack_a)
+{
+	int	x;
+	int	y;
+	int	z;
+
+	while (!(x < y && y < z && z > x))
+	{
+		x = (*stack_a)->data;
+		y = (*stack_a)->next->data;
+		z = (*stack_a)->next->next->data;
+		if (x < y && y > z && z < x)
+			ft_rra(stack_a);
+		if (x > y && y < z && z < x)
+			ft_ra(stack_a);
+		if ((x > y && y > z && z < x) || (x > y && y < z && z > x)
+			|| (x > y && y > z && z < x) || (x < y && y > z && z > x))
+			ft_sa(stack_a);
+	}
+}
+
+void	sort_4_args(t_list **stack_a, t_list **stack_b)
 {
 	int	distance;
 
@@ -50,19 +69,19 @@ static void	sort_4_args(t_list **stack_a, t_list **stack_b)
 		return ;
 	distance = get_distance(stack_a, get_min(stack_a, -1));
 	if (distance == 1)
-		ra(stack_a);
+		ft_ra(stack_a);
 	else if (distance == 2)
 	{
-		ra(stack_a);
-		ra(stack_a);
+		ft_ra(stack_a);
+		ft_ra(stack_a);
 	}
 	else if (distance == 3)
-		rra(stack_a);
+		ft_rra(stack_a);
 	if (is_stack_sorted(stack_a))
 		return ;
-	pb(stack_a, stack_b);
+	ft_pb(stack_a, stack_b);
 	sort_3_args(stack_a);
-	pa(stack_a, stack_b);
+	ft_pa(stack_a, stack_b);
 }
 
 void	sort_5_args(t_list **stack_a, t_list **stack_b)
@@ -71,40 +90,22 @@ void	sort_5_args(t_list **stack_a, t_list **stack_b)
 
 	distance = get_distance(stack_a, get_min(stack_a, -1));
 	if (distance == 1)
-		ra(stack_a);
+		ft_ra(stack_a);
 	else if (distance == 2)
 	{
-		ra(stack_a);
-		ra(stack_a);
+		ft_ra(stack_a);
+		ft_ra(stack_a);
 	}
 	else if (distance == 3)
 	{
-		rra(stack_a);
-		rra(stack_a);
+		ft_rra(stack_a);
+		ft_rra(stack_a);
 	}
 	else if (distance == 4)
-		rra(stack_a);
+		ft_rra(stack_a);
 	if (is_stack_sorted(stack_a))
 		return ;
-	pb(stack_a, stack_b);
+	ft_pb(stack_a, stack_b);
 	sort_4_args(stack_a, stack_b);
-	pa(stack_a, stack_b);
-}
-
-void	simple_sort(t_list **stack_a, t_list **stack_b)
-{
-	int	size;
-
-	if (is_stack_sorted(stack_a) || ft_lstsize(*stack_a) == 0
-		|| ft_lstsize(*stack_a) == 1)
-		return ;
-	size = ft_lstsize(*stack_a);
-	if (size == 2)
-		sa(stack_a);
-	else if (size == 3)
-		sort_3_args(stack_a);
-	else if (size == 4)
-		sort_4_args(stack_a, stack_b);
-	else if (size == 5)
-		sort_5_args(stack_a, stack_b);
+	ft_pa(stack_a, stack_b);
 }

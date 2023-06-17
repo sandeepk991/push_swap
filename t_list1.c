@@ -6,7 +6,7 @@
 /*   By: skaur <skaur@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 12:22:19 by skaur             #+#    #+#             */
-/*   Updated: 2023/04/09 12:23:06 by skaur            ###   ########.fr       */
+/*   Updated: 2023/06/17 11:12:31 by skaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list	*ft_lstnew(int data)
 	if (!new)
 		return (NULL);
 	new->data = data;
-	new->index = -1;
+	new->index_value = -1;
 	new->next = NULL;
 	return (new);
 }

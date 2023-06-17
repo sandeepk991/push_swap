@@ -6,7 +6,7 @@
 /*   By: skaur <skaur@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 12:23:14 by skaur             #+#    #+#             */
-/*   Updated: 2023/04/09 12:24:20 by skaur            ###   ########.fr       */
+/*   Updated: 2023/06/17 11:17:18 by skaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	ft_lstadd_back(t_list **stack, t_list *new)
 
 int	ft_lstsize(t_list *head)
 {
-	size_t	i;
-	t_list	*tmp;
+	t_list		*tmp;
+	unsigned int	i;
 
 	tmp = head;
 	i = 0;
