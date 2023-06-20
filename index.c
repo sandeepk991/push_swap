@@ -13,19 +13,19 @@ static t_list	*get_next_min(t_list **stack)
 	min = NULL;
 	flag = 0;
 	stack_a = *stack;
-	while (stack_a != NULL)
+	if (stack_a)
 	{
-		if (stack_a->index_value == -1)
+		while (stack_a != NULL)
 		{
-			if (!flag || stack_a->data < min->data)
+			if ((stack_a->index_value == -1) 
+				&& (!flag || stack_a->data < min->data))
 			{
 				min = stack_a;
 				flag = 1;
 			}
+			stack_a = stack_a->next;
 		}
-		stack_a = stack_a->next;
 	}
-	
 	return (min);
 }
 
@@ -50,9 +50,8 @@ void	ft_conditions(int argc, char **argv)
 	long	tmp;
 	
 	i = 0;
-	args = ft_split(argv[i], ' ');
 	if (argc == 2)
-		ft_free(args);
+		args = ft_split(argv[1], ' ');
 	else
 	{
 		i = 1;
@@ -69,6 +68,8 @@ void	ft_conditions(int argc, char **argv)
 			ft_error("Error");
 		i++;
 	}
+	if (argc == 2)
+		ft_free(args);
 }
 
 int	ft_duplicate(int num, char **argv, int i)

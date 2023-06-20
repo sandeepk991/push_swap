@@ -10,8 +10,9 @@ SRCS =  ft_rules_1.c \
 	simple.c \
 	t_list1.c \
 	t_list2.c \
-	utils1.c
-
+	utils1.c \
+	utils2.c
+	
 OBJS = ${SRCS:.c=.o}
 
 CC = cc

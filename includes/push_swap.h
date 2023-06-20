@@ -23,6 +23,7 @@ int		is_stack_sorted(t_list **stack);
 int		get_distance(t_list **stack, int index);
 void	free_stack(t_list **stack);
 void	ft_free(char **str);
+void	print_exit(char *msg, t_list **stack_a, t_list **stack_b);
 //static int	ft_isnum(char *num);
 //static int	ft_duplicate(int num, char **argv, int i);
 

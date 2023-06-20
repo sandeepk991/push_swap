@@ -5,9 +5,12 @@
 int ft_swap(t_list **stack_a)
 {
 	t_list *tmp;
-	//if (*stack_a == NULL || (*stack_a)->next)
-		//return (-1);
+	
+	if (ft_lstsize(*stack_a) < 2)
+		return (-1);
 	tmp = *stack_a;
+	if (!tmp && !tmp->next)
+		ft_error("Error occured while swapping!");
 	*stack_a = (*stack_a)->next;
 	tmp->next = (*stack_a)->next;
 	(*stack_a)->next = tmp;
@@ -18,8 +21,7 @@ int	ft_sa(t_list **stack_a)
 {
 	if (ft_swap(stack_a) == -1)
 		return (-1);
-	else
-		write(1, "sa\n", 3);
+	write(1, "sa\n", 3);
 	return (0);
 }
 
@@ -27,8 +29,7 @@ int	ft_sb(t_list **stack_b)
 {
 	if (ft_swap(stack_b) == -1)
 		return (-1);
-	else
-		write(1, "sb\n", 3);
+	write(1, "sb\n", 3);
 	return (0);
 }
 

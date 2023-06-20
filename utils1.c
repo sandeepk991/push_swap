@@ -31,34 +31,4 @@ int	get_distance(t_list **stack, int index)
 	return (distance);
 }
 
-void	free_stack(t_list **stack)
-{
-	t_list	*head;
-	t_list	*tmp;
 
-	head = *stack;
-	while (head)
-	{
-		tmp = head;
-		head = head->next;
-		free(tmp);
-	}
-	free(stack);
-}
-
-void	ft_error(char *msg)
-{
-	ft_putendl_fd(msg, 1);
-	exit(0);
-}
-
-void	ft_free(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	while (i >= 0)
-		free(str[i--]);
-}

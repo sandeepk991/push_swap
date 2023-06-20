@@ -6,7 +6,7 @@ int	ft_rotate(t_list **stack_a)
 {
 	t_list	*tmp;
 
-	if (!*stack_a || (*stack_a)->next == 0)
+	if (ft_lstsize(*stack_a) < 2)
 		return (-1);
 	tmp = *stack_a;
 	*stack_a = ft_lstlast(*stack_a);
@@ -20,8 +20,7 @@ int	ft_ra(t_list **stack_a)
 {
 	if (ft_rotate(stack_a) == -1)
 		return (-1);
-	else
-		write(1, "ra\n", 3);
+	write(1, "ra\n", 3);
 	return (0);
 }
 
@@ -29,8 +28,7 @@ int	ft_rb(t_list **stack_b)
 {
 	if (ft_rotate(stack_b) == -1)
 		return (-1);
-	else
-		write(1, "rb\n", 3);
+	write(1, "rb\n", 3);
 	return (0);
 }
 

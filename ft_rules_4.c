@@ -7,7 +7,7 @@ int	ft_reverseRotate(t_list **stack_a)
 	t_list	*tmp;
 	int i;
 
-	if (*stack_a == 0 || (*stack_a)->next == 0)
+	if (ft_lstsize(*stack_a) < 2)
 		return (-1);
 	tmp = *stack_a;
 	i = 0;
@@ -30,8 +30,7 @@ int	ft_rra(t_list **stack_a)
 {
 	if (ft_reverseRotate(stack_a) == -1)
 		return (-1);
-	else
-		write(1, "rra\n", 4);
+	write(1, "rra\n", 4);
 	return (0);
 }
 
@@ -39,8 +38,7 @@ int	ft_rrb(t_list **stack_b)
 {
 	if (ft_reverseRotate(stack_b) == -1)
 		return (-1);
-	else
-		write(1, "rrb\n", 4);
+	write(1, "rrb\n", 4);
 	return (0);
 }
 

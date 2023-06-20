@@ -31,22 +31,37 @@ void	sort_2_args(t_list **stack_a)
 
 void	sort_3_args(t_list **stack_a)
 {
-	int	x;
-	int	y;
-	int	z;
-	
-	while (!(x < y && y < z && z > x))
+	t_list	*head;
+	int		min;
+	int		next_min;
+
+	head = *stack_a;
+	min = get_min(stack_a, -1);
+	next_min = get_min(stack_a, min);
+	if (is_stack_sorted(stack_a))
+		return ;
+	if (head->index_value == min && head->next->index_value != next_min)
 	{
-		x = (*stack_a)->data;
-		y = (*stack_a)->next->data;
-		z = (*stack_a)->next->next->data;
-		if (x < y && y > z && z < x)
-			ft_rra(stack_a);
-		if (x > y && y < z && z < x)
-			ft_ra(stack_a);
-		if ((x > y && y > z && z < x) || (x > y && y < z && z > x)
-			|| (x > y && y > z && z < x) || (x < y && y > z && z > x))
+		ft_ra(stack_a);
+		ft_sa(stack_a);
+		ft_rra(stack_a);
+	}
+	else if (head->index_value == next_min)
+	{
+		if (head->next->index_value == min)
 			ft_sa(stack_a);
+		else
+			ft_rra(stack_a);
+	}
+	else
+	{
+		if (head->next->index_value == min)
+			ft_ra(stack_a);
+		else
+		{
+			ft_sa(stack_a);
+			ft_rra(stack_a);
+		}
 	}
 }
 
