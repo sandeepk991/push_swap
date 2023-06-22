@@ -57,15 +57,15 @@ int	main(int argc, char **argv)
 	t_list	**stack_a;
 	t_list	**stack_b;
 
-	if (argc < 2)
-		return (-1);
-	ft_conditions(argc, argv);
-	stack_a = (t_list **)malloc(sizeof(t_list));
-	stack_b = (t_list **)malloc(sizeof(t_list));
+	stack_a = (t_list **)malloc(sizeof(t_list *));
+	stack_b = (t_list **)malloc(sizeof(t_list *));
 	if (stack_a == NULL || stack_b == NULL)
 		print_exit("malloc fail", stack_a, stack_b);	
 	*stack_a = NULL;
 	*stack_b = NULL;
+	if (argc <= 2)
+		return (0);
+	ft_conditions(argc, argv);
 	fill_in_stack(stack_a, argc, argv);
 	if (is_stack_sorted(stack_a))
 	{
@@ -78,4 +78,44 @@ int	main(int argc, char **argv)
 	free_stack(stack_b);
 	return (0);
 }
+
+/*int	push_swap(int argc, char **argv)
+{
+	
+	//printf("h\n");	
+	t_list	**stack_a;
+	t_list	**stack_b;
+	
+	stack_a = (t_list **)malloc(sizeof(t_list));
+	stack_b = (t_list **)malloc(sizeof(t_list));
+	if (stack_a == NULL || stack_b == NULL)
+		print_exit("malloc fail", stack_a, stack_b);
+	*stack_a = NULL;
+	*stack_b = NULL;
+	fill_in_stack(stack_a, argc, argv);
+	ft_index_stack(stack_a);
+	if (is_stack_sorted(stack_a))
+	{
+		free_stack(stack_a);
+		free_stack(stack_b);
+		return ;
+	}
+	sorting(stack_a, stack_b);
+	print_stack(*stack_a);
+	free_stack(stack_a);
+	free_stack(stack_b);
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	if (argc <= 2)
+		return (-1);
+	else
+		ft_conditions(argc, argv);
+	//printf("h\n");
+	push_swap(argc, argv);
+	return (0);
+}
+*/
 
