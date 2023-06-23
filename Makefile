@@ -28,7 +28,7 @@ SRCS =  ft_rules_1.c \
 OBJS = ${SRCS:.c=.o}
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iincludes
+CFLAGS = -Wall -Wextra -Werror -Iincludes -g
 
 RM = rm -rf
 
