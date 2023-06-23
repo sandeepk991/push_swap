@@ -1,44 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skaur <skaur@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/09 12:24:28 by skaur             #+#    #+#             */
-/*   Updated: 2023/04/09 12:24:51 by skaur            ###   ########.fr       */
+/*   Created: 2023/06/23 11:26:47 by skaur             #+#    #+#             */
+/*   Updated: 2023/06/23 11:27:46 by skaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/push_swap.h"
+#include <stdio.h>
 
-int	is_stack_sorted(t_list **stack)
+void	print_exit(char *msg, t_list **stack_a, t_list **stack_b)
 {
-	t_list	*head;
-
-	head = *stack;
-	while (head && head->next)
-	{
-		if (head->data > head->next->data)
-			return (0);
-		head = head->next;
-	}
-	return (1);
+	ft_putendl_fd(msg, 1);
+	free_stack(stack_a);
+	free_stack(stack_b);
+	exit(EXIT_FAILURE);
 }
 
-int	get_distance(t_list **stack, int index)
+void	free_stack(t_list **stack)
 {
 	t_list	*head;
-	int		distance;
+	t_list	*tmp;
 
-	distance = 0;
 	head = *stack;
 	while (head)
 	{
-		if (head->index_value == index)
-			break ;
-		distance++;
+		tmp = head;
 		head = head->next;
+		free(tmp);
 	}
-	return (distance);
+	free(stack);
+}
+
+void	ft_error(char *msg)
+{
+	ft_putendl_fd(msg, 1);
+	exit(EXIT_FAILURE);
+}
+
+void	ft_free(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	while (i >= 0)
+		free(str[i--]);
 }

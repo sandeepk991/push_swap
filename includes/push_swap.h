@@ -29,7 +29,7 @@ void	ft_lstadd_back(t_list **stack, t_list *new);
 int		ft_lstsize(t_list *head);
 
 void	ft_error(char *msg);
-void	ft_conditions(int argc, char **argv);
+int		ft_conditions(int argc, char **argv);
 int		is_stack_sorted(t_list **stack);
 int		get_distance(t_list **stack, int index);
 void	free_stack(t_list **stack);

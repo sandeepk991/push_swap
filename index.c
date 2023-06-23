@@ -6,7 +6,7 @@
 /*   By: skaur <skaur@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 12:16:02 by skaur             #+#    #+#             */
-/*   Updated: 2023/06/17 13:08:07 by skaur            ###   ########.fr       */
+/*   Updated: 2023/06/23 11:42:39 by skaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_list	*get_next_min(t_list **stack)
 			}
 		}
 		stack_a = stack_a->next;
-	}	
+	}
 	return (min);
 }
 

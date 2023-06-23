@@ -6,11 +6,11 @@
 /*   By: skaur <skaur@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 12:20:54 by skaur             #+#    #+#             */
-/*   Updated: 2023/06/17 13:08:42 by skaur            ###   ########.fr       */
+/*   Updated: 2023/06/23 11:44:19 by skaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "./includes/push_swap.h"
 
 void	sort_3_args(t_list **stack_a);
 void	sort_4_args(t_list **stack_a, t_list **stack_b);
@@ -46,6 +46,9 @@ void	sort_3_args(t_list **stack_a)
 	int	y;
 	int	z;
 
+	x = 0;
+	y = 0;
+	z = 0;
 	while (!(x < y && y < z && z > x))
 	{
 		x = (*stack_a)->data;

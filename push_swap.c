@@ -6,35 +6,14 @@
 /*   By: skaur <skaur@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 11:23:38 by skaur             #+#    #+#             */
-/*   Updated: 2023/06/17 11:08:45 by skaur            ###   ########.fr       */
+/*   Updated: 2023/06/23 11:39:50 by skaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "./includes/push_swap.h"
 #include <stdio.h>
 
-void print_stack(t_list *stack) {
-    while (stack != NULL) {
-        printf("%d ", stack->data); // Assuming the data type is int
-        stack = stack->next;
-    }
-    printf("\n");
-}
-void	ft_allocation_error(t_list **stack_a, t_list **stack_b)
-{
-	printf("Memory allocation failed. Exiting.\n");
-
-		// Clean up any previously allocated memory
-		if (stack_a != NULL) {
-			free(stack_a);
-		}
-		if (stack_b != NULL) {
-			free(stack_b);
-		}
-
-		// Terminate the program
-		exit(EXIT_FAILURE);
-}
+void	print_exit(char *msg, t_list **stack_a, t_list **stack_b);
 
 static void	fill_in_stack(t_list **stack, int argc, char **argv)
 {
@@ -51,7 +30,8 @@ static void	fill_in_stack(t_list **stack, int argc, char **argv)
 			i++;
 		}
 	}
-	else
+	ft_index_stack(stack);
+	if (argc == 2)
 		ft_free(argv);
 }
 
@@ -75,40 +55,29 @@ void	sorting(t_list **stack_a, t_list **stack_b)
 		radix_sort(stack_a, stack_b);
 }
 
-static void	push_swap(int argc, char **argv)
-{	
+int	main(int argc, char **argv)
+{
 	t_list	**stack_a;
 	t_list	**stack_b;
 
-	stack_a = (t_list **)malloc(sizeof(t_list));
-	stack_b = (t_list **)malloc(sizeof(t_list));
+	stack_a = (t_list **)malloc(sizeof(t_list *));
+	stack_b = (t_list **)malloc(sizeof(t_list *));
 	if (stack_a == NULL || stack_b == NULL)
-	{
-		ft_allocation_error(stack_a, stack_b);
-	}
+		print_exit("malloc fail", stack_a, stack_b);
 	*stack_a = NULL;
 	*stack_b = NULL;
+	if (argc <= 2)
+		return (0);
+	ft_conditions(argc, argv);
 	fill_in_stack(stack_a, argc, argv);
-	ft_index_stack(stack_a);
 	if (is_stack_sorted(stack_a))
 	{
 		free_stack(stack_a);
 		free_stack(stack_b);
-		return ;
+		return (0);
 	}
 	sorting(stack_a, stack_b);
-	print_stack(*stack_a);
 	free_stack(stack_a);
 	free_stack(stack_b);
-	return ;
-}
-
-int	main(int argc, char **argv)
-{
-	if (argc <= 2)
-		return (-1);
-	else
-		ft_conditions(argc, argv);
-	push_swap(argc, argv);
 	return (0);
 }
