@@ -23,12 +23,13 @@ SRCS =  ft_rules_1.c \
 	t_list1.c \
 	t_list2.c \
 	utils.c \
-	utils2.c
+	utils2.c \
+	check_args.c
 
 OBJS = ${SRCS:.c=.o}
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iincludes
+CFLAGS = -Wall -Wextra -Werror -Iincludes -g
 
 RM = rm -rf
 

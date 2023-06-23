@@ -18,7 +18,10 @@ t_list	*ft_lstnew(int data)
 
 	new = (t_list *) malloc(sizeof(*new));
 	if (!new)
+	{
+		free(new);
 		return (NULL);
+	}
 	new->data = data;
 	new->index_value = -1;
 	new->next = NULL;

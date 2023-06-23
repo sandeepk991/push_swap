@@ -29,12 +29,15 @@ static void	fill_in_stack(t_list **stack, int argc, char **argv)
 	{
 		new = ft_lstnew(ft_atoi(argv[i]));
 		if (!new)
+		{
+			//free(new);
 			return ; // and free everything, also catch the reutrn in the main function return NULL  change return type
+		}
 		ft_lstadd_back(stack, new);
 		i++;
 	}
 	ft_index_stack(stack);
-	
+	//free(argv);
 }
 
 void	sorting(t_list **stack_a, t_list **stack_b)
@@ -71,13 +74,14 @@ int	main(int argc, char **argv)
 	*stack_b = NULL;
 	if (argc < 2)
 	{
+		free(argv);
 		return (0);
 	}
 	args = ft_conditions(argc, argv);
 	if (!args)
 	{
 		free(args);
-		return (1);
+		return (0);
 	}
 	fill_in_stack(stack_a, argc, args);
 	if (is_stack_sorted(stack_a))
