@@ -1,5 +1,16 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   simple.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skaur <skaur@student.42vienna.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/09 12:20:54 by skaur             #+#    #+#             */
+/*   Updated: 2023/06/23 11:44:19 by skaur            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "./includes/push_swap.h"
 
 void	sort_3_args(t_list **stack_a);
 void	sort_4_args(t_list **stack_a, t_list **stack_b);
@@ -22,8 +33,8 @@ int	get_min(t_list **stack_a, int val)
 
 void	sort_2_args(t_list **stack_a)
 {
-	t_list *head;
-	
+	t_list	*head;
+
 	head = *stack_a;
 	if (head->data > head->next->data)
 		ft_sa(stack_a);
@@ -31,37 +42,25 @@ void	sort_2_args(t_list **stack_a)
 
 void	sort_3_args(t_list **stack_a)
 {
-	t_list	*head;
-	int		min;
-	int		next_min;
+	int	x;
+	int	y;
+	int	z;
 
-	head = *stack_a;
-	min = get_min(stack_a, -1);
-	next_min = get_min(stack_a, min);
-	if (is_stack_sorted(stack_a))
-		return ;
-	if (head->index_value == min && head->next->index_value != next_min)
+	x = 0;
+	y = 0;
+	z = 0;
+	while (!(x < y && y < z && z > x))
 	{
-		ft_ra(stack_a);
-		ft_sa(stack_a);
-		ft_rra(stack_a);
-	}
-	else if (head->index_value == next_min)
-	{
-		if (head->next->index_value == min)
-			ft_sa(stack_a);
-		else
+		x = (*stack_a)->data;
+		y = (*stack_a)->next->data;
+		z = (*stack_a)->next->next->data;
+		if (x < y && y > z && z < x)
 			ft_rra(stack_a);
-	}
-	else
-	{
-		if (head->next->index_value == min)
+		if (x > y && y < z && z < x)
 			ft_ra(stack_a);
-		else
-		{
+		if ((x > y && y > z && z < x) || (x > y && y < z && z > x)
+			|| (x > y && y > z && z < x) || (x < y && y > z && z > x))
 			ft_sa(stack_a);
-			ft_rra(stack_a);
-		}
 	}
 }
 

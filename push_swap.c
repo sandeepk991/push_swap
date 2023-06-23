@@ -1,22 +1,25 @@
-#include "push_swap.h"
-#include<stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skaur <skaur@student.42vienna.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/09 11:23:38 by skaur             #+#    #+#             */
+/*   Updated: 2023/06/23 11:39:50 by skaur            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "./includes/push_swap.h"
+#include <stdio.h>
 
 void	print_exit(char *msg, t_list **stack_a, t_list **stack_b);
-
-void print_stack(t_list *stack) {
-    while (stack != NULL) {
-        printf("%d ", stack->data); // Assuming the data type is int
-        stack = stack->next;
-    }
-    printf("\n");
-}
-
 
 static void	fill_in_stack(t_list **stack, int argc, char **argv)
 {
 	t_list	*new;
-	int	i;
-	
+	int		i;
+
 	i = 1;
 	if (argc > 2)
 	{
@@ -35,7 +38,7 @@ static void	fill_in_stack(t_list **stack, int argc, char **argv)
 void	sorting(t_list **stack_a, t_list **stack_b)
 {
 	int	size;
-	
+
 	if (is_stack_sorted(stack_a) || ft_lstsize(*stack_a) == 0
 		|| ft_lstsize(*stack_a) == 1)
 		return ;
@@ -60,7 +63,7 @@ int	main(int argc, char **argv)
 	stack_a = (t_list **)malloc(sizeof(t_list *));
 	stack_b = (t_list **)malloc(sizeof(t_list *));
 	if (stack_a == NULL || stack_b == NULL)
-		print_exit("malloc fail", stack_a, stack_b);	
+		print_exit("malloc fail", stack_a, stack_b);
 	*stack_a = NULL;
 	*stack_b = NULL;
 	if (argc <= 2)
@@ -78,44 +81,3 @@ int	main(int argc, char **argv)
 	free_stack(stack_b);
 	return (0);
 }
-
-/*int	push_swap(int argc, char **argv)
-{
-	
-	//printf("h\n");	
-	t_list	**stack_a;
-	t_list	**stack_b;
-	
-	stack_a = (t_list **)malloc(sizeof(t_list));
-	stack_b = (t_list **)malloc(sizeof(t_list));
-	if (stack_a == NULL || stack_b == NULL)
-		print_exit("malloc fail", stack_a, stack_b);
-	*stack_a = NULL;
-	*stack_b = NULL;
-	fill_in_stack(stack_a, argc, argv);
-	ft_index_stack(stack_a);
-	if (is_stack_sorted(stack_a))
-	{
-		free_stack(stack_a);
-		free_stack(stack_b);
-		return ;
-	}
-	sorting(stack_a, stack_b);
-	print_stack(*stack_a);
-	free_stack(stack_a);
-	free_stack(stack_b);
-	return (0);
-}
-
-int	main(int argc, char **argv)
-{
-	if (argc <= 2)
-		return (-1);
-	else
-		ft_conditions(argc, argv);
-	//printf("h\n");
-	push_swap(argc, argv);
-	return (0);
-}
-*/
-

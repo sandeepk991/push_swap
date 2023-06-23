@@ -1,5 +1,18 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skaur <skaur@student.42vienna.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/23 11:26:47 by skaur             #+#    #+#             */
+/*   Updated: 2023/06/23 11:27:46 by skaur            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "./includes/push_swap.h"
 #include <stdio.h>
+
 void	print_exit(char *msg, t_list **stack_a, t_list **stack_b)
 {
 	ft_putendl_fd(msg, 1);
@@ -7,25 +20,6 @@ void	print_exit(char *msg, t_list **stack_a, t_list **stack_b)
 	free_stack(stack_b);
 	exit(EXIT_FAILURE);
 }
-
-/*void	print_exit(t_list **stack_a, t_list **stack_b)
-{
-	if (stack_a == NULL || stack_b == NULL) {
-		// Handle allocation failure
-		printf("Memory allocation failed. Exiting.\n");
-
-		// Clean up any previously allocated memory
-		if (stack_a != NULL) {
-			free(stack_a);
-		}
-		if (stack_b != NULL) {
-			free(stack_b);
-		}
-
-		// Terminate the program
-		exit(EXIT_FAILURE);
-	}
-}*/
 
 void	free_stack(t_list **stack)
 {

@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: skaur <skaur@student.42vienna.com>         +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/06/23 11:29:29 by skaur             #+#    #+#              #
+#    Updated: 2023/06/23 11:30:50 by skaur            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = push_swap
 
 SRCS =  ft_rules_1.c \
@@ -10,9 +22,9 @@ SRCS =  ft_rules_1.c \
 	simple.c \
 	t_list1.c \
 	t_list2.c \
-	utils1.c \
+	utils.c \
 	utils2.c
-	
+
 OBJS = ${SRCS:.c=.o}
 
 CC = cc
@@ -21,6 +33,7 @@ CFLAGS = -Wall -Wextra -Werror -Iincludes
 RM = rm -rf
 
 all: ${NAME}
+
 ${NAME}: ${OBJS}
 	@${MAKE} -C ./libft
 	@${CC} ${CFLAGS} ${OBJS} ./libft/libft.a -o ${NAME}

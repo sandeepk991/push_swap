@@ -1,13 +1,23 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_rules_4.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skaur <skaur@student.42vienna.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/09 11:37:39 by skaur             #+#    #+#             */
+/*   Updated: 2023/06/17 11:00:39 by skaur            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// Shifts down all elements of a stack by 1. The last element becomes the first one | rra and rrb
+#include "./includes/push_swap.h"
 
-int	ft_reverseRotate(t_list **stack_a)
+int	ft_reverserotate(t_list **stack_a)
 {
 	t_list	*tmp;
-	int i;
+	int		i;
 
-	if (ft_lstsize(*stack_a) < 2)
+	if (*stack_a == 0 || (*stack_a)->next == 0)
 		return (-1);
 	tmp = *stack_a;
 	i = 0;
@@ -28,17 +38,19 @@ int	ft_reverseRotate(t_list **stack_a)
 
 int	ft_rra(t_list **stack_a)
 {
-	if (ft_reverseRotate(stack_a) == -1)
+	if (ft_reverserotate(stack_a) == -1)
 		return (-1);
-	write(1, "rra\n", 4);
+	else
+		write(1, "rra\n", 4);
 	return (0);
 }
 
 int	ft_rrb(t_list **stack_b)
 {
-	if (ft_reverseRotate(stack_b) == -1)
+	if (ft_reverserotate(stack_b) == -1)
 		return (-1);
-	write(1, "rrb\n", 4);
+	else
+		write(1, "rrb\n", 4);
 	return (0);
 }
 
@@ -46,9 +58,8 @@ int	ft_rrr(t_list **stack_a, t_list **stack_b)
 {
 	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
 		return (-1);
-	ft_reverseRotate(stack_a);
-	ft_reverseRotate(stack_b);
+	ft_reverserotate(stack_a);
+	ft_reverserotate(stack_b);
 	write(1, "rrr\n", 4);
 	return (0);
 }
-

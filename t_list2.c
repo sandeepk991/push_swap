@@ -1,6 +1,17 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   t_list2.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skaur <skaur@student.42vienna.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/09 12:23:14 by skaur             #+#    #+#             */
+/*   Updated: 2023/06/23 12:17:21 by skaur            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// Adds the specified node to a stack (list) making it the last node
+#include "./includes/push_swap.h"
+
 void	ft_lstadd_back(t_list **stack, t_list *new)
 {
 	t_list	*n;
@@ -18,11 +29,10 @@ void	ft_lstadd_back(t_list **stack, t_list *new)
 	}
 }
 
-// Returns the size of the Linked List
 int	ft_lstsize(t_list *head)
 {
+	t_list			*tmp;
 	unsigned int	i;
-	t_list	*tmp;
 
 	tmp = head;
 	i = 0;

@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skaur <skaur@student.42vienna.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/09 12:17:33 by skaur             #+#    #+#             */
+/*   Updated: 2023/04/11 11:27:48 by skaur            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
 
-// Stack
 typedef struct s_list
 {
 	int				data;
@@ -18,17 +29,15 @@ void	ft_lstadd_back(t_list **stack, t_list *new);
 int		ft_lstsize(t_list *head);
 
 void	ft_error(char *msg);
-void	ft_conditions(int argc, char **argv);
+int		ft_conditions(int argc, char **argv);
 int		is_stack_sorted(t_list **stack);
 int		get_distance(t_list **stack, int index);
 void	free_stack(t_list **stack);
 void	ft_free(char **str);
-void	print_exit(char *msg, t_list **stack_a, t_list **stack_b);
 //static int	ft_isnum(char *num);
 //static int	ft_duplicate(int num, char **argv, int i);
 
 void	radix_sort(t_list **stack_a, t_list **stack_b);
-//void	simple_sort(t_list **stack_a, t_list **stack_b);
 void	ft_index_stack(t_list **stack);
 void	sort_2_args(t_list **stack_a);
 void	sorting(t_list **stack_a, t_list **stack_b);

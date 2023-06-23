@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   index.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skaur <skaur@student.42vienna.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/09 12:16:02 by skaur             #+#    #+#             */
+/*   Updated: 2023/06/23 11:42:39 by skaur            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 int	ft_isnum(char *num);
 int	ft_duplicate(int num, char **argv, int i);
@@ -13,18 +25,17 @@ static t_list	*get_next_min(t_list **stack)
 	min = NULL;
 	flag = 0;
 	stack_a = *stack;
-	if (stack_a)
+	while (stack_a != NULL)
 	{
-		while (stack_a != NULL)
+		if (stack_a->index_value == -1)
 		{
-			if ((stack_a->index_value == -1) 
-				&& (!flag || stack_a->data < min->data))
+			if (!flag || stack_a->data < min->data)
 			{
 				min = stack_a;
 				flag = 1;
 			}
-			stack_a = stack_a->next;
 		}
+		stack_a = stack_a->next;
 	}
 	return (min);
 }
@@ -46,12 +57,12 @@ void	ft_index_stack(t_list **stack)
 void	ft_conditions(int argc, char **argv)
 {
 	char	**args;
-	int	i;
+	int		i;
 	long	tmp;
-	
+
 	i = 0;
 	if (argc == 2)
-		args = ft_split(argv[1], ' ');
+		args = ft_split(argv[i], ' ');
 	else
 	{
 		i = 1;
