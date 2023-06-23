@@ -6,7 +6,7 @@
 /*   By: skaur <skaur@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 12:16:02 by skaur             #+#    #+#             */
-/*   Updated: 2023/06/23 11:42:39 by skaur            ###   ########.fr       */
+/*   Updated: 2023/06/23 16:31:14 by skaur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_index_stack(t_list **stack)
 	}
 }
 
-void	ft_conditions(int argc, char **argv)
+char	**ft_conditions(int argc, char **argv)
 {
 	char	**args;
 	int		i;
@@ -62,7 +62,11 @@ void	ft_conditions(int argc, char **argv)
 
 	i = 0;
 	if (argc == 2)
-		args = ft_split(argv[i], ' ');
+	{
+		args = ft_split(argv[1], ' ');
+		if (!args)
+			return (NULL);
+	}
 	else
 	{
 		i = 1;
@@ -70,17 +74,10 @@ void	ft_conditions(int argc, char **argv)
 	}
 	while (args[i])
 	{
-		tmp = ft_atoi(args[i]);
-		if (tmp < -2147483648 || tmp > 2147483647)
-			ft_error("Error");
-		else if (!ft_isnum(args[i]))
-			ft_error("Error");
-		else if (ft_duplicate(tmp, args, i))
-			ft_error("Error");
+		check_args(tmp, args, i);
 		i++;
 	}
-	if (argc == 2)
-		ft_free(args);
+	return (args);
 }
 
 int	ft_duplicate(int num, char **argv, int i)
@@ -109,4 +106,16 @@ int	ft_isnum(char *num)
 		i++;
 	}
 	return (1);
+}
+
+int	check_args(long tmp, char **args, int i)
+{
+	tmp = ft_atoi(args[i]);
+	if (tmp < -2147483648 || tmp > 2147483647)
+		ft_error("Error");
+	else if (!ft_isnum(args[i]))
+		ft_error("Error");
+	else if (ft_duplicate(tmp, args, i))
+		ft_error("Error");
+	return (args);
 }
