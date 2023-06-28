@@ -12,8 +12,8 @@
 
 #include "./includes/push_swap.h"
 
-void	sort_3_args(t_list **stack_a);
-void	sort_4_args(t_list **stack_a, t_list **stack_b);
+int	sort_3_args(t_list **stack_a);
+int	sort_4_args(t_list **stack_a, t_list **stack_b);
 
 int	get_min(t_list **stack_a, int val)
 {
@@ -31,16 +31,17 @@ int	get_min(t_list **stack_a, int val)
 	return (min);
 }
 
-void	sort_2_args(t_list **stack_a)
+int	sort_2_args(t_list **stack_a)
 {
 	t_list	*head;
 
 	head = *stack_a;
 	if (head->data > head->next->data)
 		ft_sa(stack_a);
+	return (0);
 }
 
-void	sort_3_args(t_list **stack_a)
+int	sort_3_args(t_list **stack_a)
 {
 	int	x;
 	int	y;
@@ -62,14 +63,15 @@ void	sort_3_args(t_list **stack_a)
 			|| (x > y && y > z && z < x) || (x < y && y > z && z > x))
 			ft_sa(stack_a);
 	}
+	return (0);
 }
 
-void	sort_4_args(t_list **stack_a, t_list **stack_b)
+int	sort_4_args(t_list **stack_a, t_list **stack_b)
 {
 	int	distance;
 
 	if (is_stack_sorted(stack_a))
-		return ;
+		return (0);
 	distance = get_distance(stack_a, get_min(stack_a, -1));
 	if (distance == 1)
 		ft_ra(stack_a);
@@ -81,13 +83,14 @@ void	sort_4_args(t_list **stack_a, t_list **stack_b)
 	else if (distance == 3)
 		ft_rra(stack_a);
 	if (is_stack_sorted(stack_a))
-		return ;
+		return (0);
 	ft_pb(stack_a, stack_b);
 	sort_3_args(stack_a);
 	ft_pa(stack_a, stack_b);
+	return (0);
 }
 
-void	sort_5_args(t_list **stack_a, t_list **stack_b)
+int	sort_5_args(t_list **stack_a, t_list **stack_b)
 {
 	int	distance;
 
@@ -107,8 +110,9 @@ void	sort_5_args(t_list **stack_a, t_list **stack_b)
 	else if (distance == 4)
 		ft_rra(stack_a);
 	if (is_stack_sorted(stack_a))
-		return ;
+		return (0);
 	ft_pb(stack_a, stack_b);
 	sort_4_args(stack_a, stack_b);
 	ft_pa(stack_a, stack_b);
+	return (0);
 }

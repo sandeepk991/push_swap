@@ -32,7 +32,7 @@ static int	get_max_bits(t_list **stack)
 	return (max_bits);
 }
 
-void	radix_sort(t_list **stack_a, t_list **stack_b)
+int	radix_sort(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*stack;
 	int		i;
@@ -59,4 +59,5 @@ void	radix_sort(t_list **stack_a, t_list **stack_b)
 			ft_pa(stack_a, stack_b);
 		i++;
 	}
+	return (0);
 }

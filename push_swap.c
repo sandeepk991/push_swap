@@ -14,6 +14,7 @@
 #include <stdio.h>
 
 void	print_exit(char *msg, t_list **stack_a, t_list **stack_b);
+int	push_swap(int argc, char **args);
 
 static void	fill_in_stack(t_list **stack, int argc, char **argv)
 {
@@ -42,13 +43,13 @@ static void	fill_in_stack(t_list **stack, int argc, char **argv)
 	//free(argv);
 }
 
-void	sorting(t_list **stack_a, t_list **stack_b)
+int	sorting(t_list **stack_a, t_list **stack_b)
 {
 	int	size;
 
 	if (is_stack_sorted(stack_a) || ft_lstsize(*stack_a) == 0
 		|| ft_lstsize(*stack_a) == 1)
-		return ;
+		return (0);
 	size = ft_lstsize(*stack_a);
 	if (size == 2)
 		sort_2_args(stack_a);
@@ -60,12 +61,11 @@ void	sorting(t_list **stack_a, t_list **stack_b)
 		sort_5_args(stack_a, stack_b);
 	else
 		radix_sort(stack_a, stack_b);
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_list	**stack_a;
-	t_list	**stack_b;
 	char **args;
 
 	if (argc < 2)
@@ -82,6 +82,15 @@ int	main(int argc, char **argv)
 		ft_free(args);
 		return (0);
 	}
+	push_swap(argc, args);
+	return (0);
+}
+
+int	push_swap(int argc, char **args)
+{
+	t_list	**stack_a;
+	t_list	**stack_b;
+	
 	stack_a = (t_list **)malloc(sizeof(t_list *));
 	stack_b = (t_list **)malloc(sizeof(t_list *));
 	if (stack_a == NULL || stack_b == NULL)
@@ -96,7 +105,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	sorting(stack_a, stack_b);
-	ft_free(args);
+	//ft_free(args);
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);
