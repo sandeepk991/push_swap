@@ -36,6 +36,8 @@ static void	fill_in_stack(t_list **stack, int argc, char **argv)
 		ft_lstadd_back(stack, new);
 		i++;
 	}
+	new = NULL;
+	free(new);
 	ft_index_stack(stack);
 	//free(argv);
 }
@@ -66,23 +68,26 @@ int	main(int argc, char **argv)
 	t_list	**stack_b;
 	char **args;
 
+	if (argc < 2)
+		return (0);
+	if (argc == 2 && (*argv[1] == '-' 
+		|| *argv[1] == '+' || *argv[1] == ' '))
+	{
+		write(1,"Error\n", 6);
+		return (0);
+	}
+	args = ft_conditions(argc, argv);
+	if (!args)
+	{
+		ft_free(args);
+		return (0);
+	}
 	stack_a = (t_list **)malloc(sizeof(t_list *));
 	stack_b = (t_list **)malloc(sizeof(t_list *));
 	if (stack_a == NULL || stack_b == NULL)
 		print_exit("malloc fail", stack_a, stack_b);
 	*stack_a = NULL;
 	*stack_b = NULL;
-	if (argc < 2)
-	{
-		free(argv);
-		return (0);
-	}
-	args = ft_conditions(argc, argv);
-	if (!args)
-	{
-		free(args);
-		return (0);
-	}
 	fill_in_stack(stack_a, argc, args);
 	if (is_stack_sorted(stack_a))
 	{
@@ -91,6 +96,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	sorting(stack_a, stack_b);
+	ft_free(args);
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);
