@@ -40,7 +40,6 @@ static void	fill_in_stack(t_list **stack, int argc, char **argv)
 	new = NULL;
 	free(new);
 	ft_index_stack(stack);
-	//free(argv);
 }
 
 int	sorting(t_list **stack_a, t_list **stack_b)
@@ -49,7 +48,11 @@ int	sorting(t_list **stack_a, t_list **stack_b)
 
 	if (is_stack_sorted(stack_a) || ft_lstsize(*stack_a) == 0
 		|| ft_lstsize(*stack_a) == 1)
+	{
+		free_stack(stack_a);
+		free_stack(stack_b);	
 		return (0);
+	}
 	size = ft_lstsize(*stack_a);
 	if (size == 2)
 		sort_2_args(stack_a);
@@ -83,6 +86,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	push_swap(argc, args);
+	//ft_free(args);
 	return (0);
 }
 
@@ -98,6 +102,7 @@ int	push_swap(int argc, char **args)
 	*stack_a = NULL;
 	*stack_b = NULL;
 	fill_in_stack(stack_a, argc, args);
+	//ft_free(args);
 	if (is_stack_sorted(stack_a))
 	{
 		free_stack(stack_a);
@@ -105,7 +110,7 @@ int	push_swap(int argc, char **args)
 		return (0);
 	}
 	sorting(stack_a, stack_b);
-	//ft_free(args);
+	ft_free(args);
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);

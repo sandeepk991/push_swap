@@ -38,7 +38,7 @@ void	free_stack(t_list **stack)
 
 void	ft_error(char *msg)
 {
-	ft_putendl_fd(msg, 1);
+	ft_putendl_fd(msg, 2);
 	exit(EXIT_FAILURE);
 }
 
@@ -48,7 +48,9 @@ void	ft_free(char **str)
 
 	i = 0;
 	while (str[i])
+	{
+		free(str[i]);
 		i++;
-	while (i >= 0)
-		free(str[i--]);
+	}
+	free(str);
 }
