@@ -30,7 +30,7 @@ OBJS = ${SRCS:.c=.o}
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iincludes -g
-
+CHECKER = ./push_swap $(ARG) | ./checker_linux $(ARG)
 RM = rm -rf
 
 all: ${NAME}
@@ -46,5 +46,16 @@ fclean: clean
 	@${RM} ${NAME}
 
 re: fclean all
+
+size ?= 5
+
+test: $(NAME)
+		@$(eval ARG = $(shell seq -5000 5000 | shuf -n $(size)))
+		@echo "Checker result: "
+		@$(CHECKER)
+		@echo "Instructions count: "
+		@./push_swap $(ARG) | wc -l
+		@echo "Valgrind result: "
+		@if valgrind ./push_swap $(ARG) 2>&1 | grep -q "All heap blocks were freed"; then echo "OK"; else echo -e "KO"; fi
 
 .PHONY: all clean fclean re

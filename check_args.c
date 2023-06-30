@@ -11,14 +11,16 @@
 /* ************************************************************************** */
 
 #include "./includes/push_swap.h"
+#include <stdio.h>
 
 int	ft_isnum(char *num);
 int	ft_duplicate(int num, char **argv, int i);
-char	**check_args(long tmp, char **args, int i);
+int	check_args(long tmp, char **args, int i);
 
 char	**ft_conditions(int argc, char **argv)
 {
 	char	**args;
+	//char	**sub_args;
 	int		i;
 	long	tmp;
 
@@ -37,7 +39,8 @@ char	**ft_conditions(int argc, char **argv)
 	while (args[i])
 	{
 		tmp = ft_atoi(args[i]);
-		check_args(tmp, args, i);
+		if (check_args(tmp, args, i))
+			ft_free(args);
 		i++;
 	}
 	return (args);
@@ -71,14 +74,23 @@ int	ft_isnum(char *num)
 	return (1);
 }
 
-char	**check_args(long tmp, char **args, int i)
+int	check_args(long tmp, char **args, int i)
 {
 
 	if (tmp < -2147483648 || tmp > 2147483647)
-		ft_error("Error");
+	{
+		write(2, "Error\n", 6);
+		return (1);
+	}
 	else if (!ft_isnum(args[i]))
-		ft_error("Error");
+	{
+		write(2, "Error\n", 6);
+		return (1);
+	}
 	else if (ft_duplicate(tmp, args, i))
-		ft_error("Error");
-	return (args);
+	{
+		write(2, "Error\n", 6);
+		return (1);
+	}
+	return (0);
 }

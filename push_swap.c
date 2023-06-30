@@ -16,7 +16,7 @@
 void	print_exit(char *msg, t_list **stack_a, t_list **stack_b);
 int	push_swap(int argc, char **args);
 
-static void	fill_in_stack(t_list **stack, int argc, char **argv)
+char	**fill_in_stack(t_list **stack, int argc, char **argv)
 {
 	t_list	*new;
 	int		i;
@@ -32,14 +32,16 @@ static void	fill_in_stack(t_list **stack, int argc, char **argv)
 		if (!new)
 		{
 			//free(new);
-			return ; // and free everything, also catch the reutrn in the main function return NULL  change return type
+			return NULL; // and free everything, also catch the reutrn in the main function return NULL  change return type
 		}
 		ft_lstadd_back(stack, new);
 		i++;
 	}
 	new = NULL;
 	free(new);
+	//ft_free(argv);
 	ft_index_stack(stack);
+	return (argv);
 }
 
 int	sorting(t_list **stack_a, t_list **stack_b)
@@ -81,12 +83,9 @@ int	main(int argc, char **argv)
 	}
 	args = ft_conditions(argc, argv);
 	if (!args)
-	{
 		ft_free(args);
-		return (0);
-	}
 	push_swap(argc, args);
-	//ft_free(args);
+	ft_free(args);
 	return (0);
 }
 
@@ -110,7 +109,7 @@ int	push_swap(int argc, char **args)
 		return (0);
 	}
 	sorting(stack_a, stack_b);
-	ft_free(args);
+	//ft_free(args);
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);

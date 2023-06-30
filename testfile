@@ -1,15 +1,29 @@
-==24775== Memcheck, a memory error detector
-==24775== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==24775== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==24775== Command: ./push_swap 302 310 163 150 345 465\ 170\ 214\ 776\ 214
-==24775== Parent PID: 24774
-==24775== 
-==24775== 
-==24775== HEAP SUMMARY:
-==24775==     in use at exit: 0 bytes in 0 blocks
-==24775==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==24775== 
-==24775== All heap blocks were freed -- no leaks are possible
-==24775== 
-==24775== For lists of detected and suppressed errors, rerun with: -s
-==24775== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==177257== Memcheck, a memory error detector
+==177257== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==177257== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==177257== Command: ./push_swap 613 613 239 398 491 77\ 196\ 805\ 607\ 20
+==177257== Parent PID: 177256
+==177257== 
+==177257== Invalid free() / delete / delete[] / realloc()
+==177257==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==177257==    by 0x402656: ft_free (utils2.c:52)
+==177257==    by 0x402740: ft_conditions (check_args.c:41)
+==177257==    by 0x401B82: main (push_swap.c:84)
+==177257==  Address 0x1fff000783 is on thread 1's stack
+==177257== 
+==177257== Invalid free() / delete / delete[] / realloc()
+==177257==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==177257==    by 0x402678: ft_free (utils2.c:56)
+==177257==    by 0x402740: ft_conditions (check_args.c:41)
+==177257==    by 0x401B82: main (push_swap.c:84)
+==177257==  Address 0x1fff000438 is on thread 1's stack
+==177257== 
+==177257== 
+==177257== HEAP SUMMARY:
+==177257==     in use at exit: 0 bytes in 0 blocks
+==177257==   total heap usage: 0 allocs, 8 frees, 0 bytes allocated
+==177257== 
+==177257== All heap blocks were freed -- no leaks are possible
+==177257== 
+==177257== For lists of detected and suppressed errors, rerun with: -s
+==177257== ERROR SUMMARY: 8 errors from 2 contexts (suppressed: 0 from 0)
