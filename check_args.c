@@ -16,8 +16,9 @@
 int	ft_isnum(char *num);
 int	ft_duplicate(int num, char **argv, int i);
 int	check_args(long tmp, char **args, int i);
+char	*ft_join_arguments(char *s1, char *s2);
 
-char	**ft_conditions(int argc, char **argv)
+/*char	**ft_conditions(int argc, char **argv)
 {
 	char	**args;
 	//char	**sub_args;
@@ -43,6 +44,28 @@ char	**ft_conditions(int argc, char **argv)
 			ft_free(args);
 		i++;
 	}
+	return (args);
+}
+*/
+char	**ft_conditions(int argc, char **argv)
+{
+	int	i;
+	char	*arg;
+	char	**args;
+	
+	i = 1;
+	arg = ft_calloc(1, sizeof(char));
+	if (!arg)
+		return (NULL);
+	while(i < argc)
+	{
+		arg = ft_join_arguments(arg, argv[i]);
+		if (i < argc -1)
+			arg = ft_join_arguments(arg, " ");
+		i++;
+	}
+	args = ft_split(arg, ' ');
+	free(arg);
 	return (args);
 }
 
@@ -93,4 +116,13 @@ int	check_args(long tmp, char **args, int i)
 		return (1);
 	}
 	return (0);
+}
+
+char	*ft_join_arguments(char *s1, char *s2)
+{
+	char	*temp;
+	
+	temp = ft_strjoin(s1, s2);
+	free(s1);
+	return (temp);
 }
