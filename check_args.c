@@ -13,51 +13,22 @@
 #include "./includes/push_swap.h"
 #include <stdio.h>
 
-int	ft_isnum(char *num);
-int	ft_duplicate(int num, char **argv, int i);
-int	check_args(long tmp, char **args, int i);
 char	*ft_join_arguments(char *s1, char *s2);
+int		ft_isnum(char *num);
+int		ft_duplicate(int num, char **argv, int i);
+int		check_args(long tmp, char **args, int i);
 
-/*char	**ft_conditions(int argc, char **argv)
-{
-	char	**args;
-	//char	**sub_args;
-	int		i;
-	long	tmp;
-
-	i = 0;
-	if (argc == 2)
-	{
-		args = ft_split(argv[1], ' ');
-		if (!args)
-			return (NULL);
-	}
-	else
-	{
-		i = 1;
-		args = argv;
-	}
-	while (args[i])
-	{
-		tmp = ft_atoi(args[i]);
-		if (check_args(tmp, args, i))
-			ft_free(args);
-		i++;
-	}
-	return (args);
-}
-*/
 char	**ft_conditions(int argc, char **argv)
 {
-	int	i;
 	char	*arg;
 	char	**args;
-	
+	int		i;
+
 	i = 1;
 	arg = ft_calloc(1, sizeof(char));
 	if (!arg)
 		return (NULL);
-	while(i < argc)
+	while (i < argc)
 	{
 		arg = ft_join_arguments(arg, argv[i]);
 		if (i < argc -1)
@@ -99,7 +70,6 @@ int	ft_isnum(char *num)
 
 int	check_args(long tmp, char **args, int i)
 {
-
 	if (tmp < -2147483648 || tmp > 2147483647)
 	{
 		write(2, "Error\n", 6);
@@ -121,7 +91,7 @@ int	check_args(long tmp, char **args, int i)
 char	*ft_join_arguments(char *s1, char *s2)
 {
 	char	*temp;
-	
+
 	temp = ft_strjoin(s1, s2);
 	free(s1);
 	return (temp);

@@ -14,8 +14,8 @@
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
-#include <stdlib.h>
-#include <unistd.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_list
 {
@@ -39,13 +39,13 @@ void	ft_free(char **str);
 //static int	ft_isnum(char *num);
 //static int	ft_duplicate(int num, char **argv, int i);
 
-int	radix_sort(t_list **stack_a, t_list **stack_b);
+void	radix_sort(t_list **stack_a, t_list **stack_b);
 void	ft_index_stack(t_list **stack);
-int	sort_2_args(t_list **stack_a);
-int	sorting(t_list **stack_a, t_list **stack_b);
-int	sort_4_args(t_list **stack_a, t_list **stack_b);
-int	sort_3_args(t_list **stack_a);
-int	sort_5_args(t_list **stack_a, t_list **stack_b);
+int		sort_2_args(t_list **stack_a);
+int		sorting(t_list **stack_a, t_list **stack_b);
+int		sort_4_args(t_list **stack_a, t_list **stack_b);
+int		sort_3_args(t_list **stack_a);
+int		sort_5_args(t_list **stack_a, t_list **stack_b);
 
 int		ft_swap(t_list **stack_a);
 int		ft_push(t_list **stack_a, t_list **stack_b);

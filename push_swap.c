@@ -14,17 +14,8 @@
 #include <stdio.h>
 
 void	print_exit(char *msg, t_list **stack_a, t_list **stack_b);
-int	push_swap(int argc, char **args);
-int	check_args(long tmp, char **args, int i);
-
-/*void print_stack(t_list *stack) {
-    while (stack != NULL) {
-        printf("%d ", stack->data); // Assuming the data type is int
-        stack = stack->next;
-    }
-    printf("\n");
-}*/
-
+int		push_swap(int argc, char **args);
+int		check_args(long tmp, char **args, int i);
 
 char	**fill_in_stack(t_list **stack, int argc, char **argv)
 {
@@ -34,22 +25,20 @@ char	**fill_in_stack(t_list **stack, int argc, char **argv)
 	i = 1;
 	if (argc == 2)
 		i = 0;
-	else 
+	else
 		i = 0;
 	while (argv[i])
 	{
 		new = ft_lstnew(ft_atoi(argv[i]));
 		if (!new)
 		{
-			//free(new);
-			return NULL; // and free everything, also catch the reutrn in the main function return NULL  change return type
+			return (NULL);
 		}
 		ft_lstadd_back(stack, new);
 		i++;
 	}
 	new = NULL;
 	free(new);
-	//ft_free(argv);
 	ft_index_stack(stack);
 	return (argv);
 }
@@ -62,7 +51,7 @@ int	sorting(t_list **stack_a, t_list **stack_b)
 		|| ft_lstsize(*stack_a) == 1)
 	{
 		free_stack(stack_a);
-		free_stack(stack_b);	
+		free_stack(stack_b);
 		return (0);
 	}
 	size = ft_lstsize(*stack_a);
@@ -81,25 +70,23 @@ int	sorting(t_list **stack_a, t_list **stack_b)
 
 int	main(int argc, char **argv)
 {
-	char **args;
+	char	**args;
+	int		i;
 	long	tmp;
-	int	i;
 
 	if (argc < 2)
 		return (1);
-	if (argc == 2 && (*argv[1] == '-' 
-		|| *argv[1] == '+' || *argv[1] == ' '))
+	if (argc == 2 && (*argv[1] == '-' || *argv[1] == '+' || *argv[1] == ' '))
 	{
-		write(1,"Error\n", 6);
+		write(1, "Error\n", 6);
 		return (1);
 	}
-	args = ft_conditions(argc, argv);	
+	args = ft_conditions(argc, argv);
 	if (!args)
 		ft_free(args);
 	i = 0;
 	while (args[i])
 	{
-		//printf("args[%i] = %s\n", i, args[i]);
 		tmp = ft_atoi(args[i]);
 		if (check_args(tmp, args, i))
 			ft_free(args);
@@ -114,22 +101,14 @@ int	push_swap(int argc, char **args)
 {
 	t_list	**stack_a;
 	t_list	**stack_b;
-	//int	i;
-	
+
 	stack_a = (t_list **)malloc(sizeof(t_list *));
 	stack_b = (t_list **)malloc(sizeof(t_list *));
 	if (stack_a == NULL || stack_b == NULL)
 		print_exit("malloc fail", stack_a, stack_b);
 	*stack_a = NULL;
 	*stack_b = NULL;
-	//i = 0;
-	/*while (args[i])
-	{
-		printf("args[%i] = %s\n", i, args[i]);
-		i++;
-	}*/
 	fill_in_stack(stack_a, argc, args);
-	//ft_free(args);
 	if (is_stack_sorted(stack_a))
 	{
 		free_stack(stack_a);
@@ -137,8 +116,6 @@ int	push_swap(int argc, char **args)
 		return (0);
 	}
 	sorting(stack_a, stack_b);
-	//ft_free(args);
-	//print_stack(*stack_a);
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);
